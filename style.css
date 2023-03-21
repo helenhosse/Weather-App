@@ -1,1 +1,37 @@
-
+html, body {
+    font-family: 'Oswald', sans-serif;  
+    font-size: 18px;
+    line-height: 1;    
+    background: #dbf6ea;}
+  
+  .jumbotron {
+    text-align: center;
+    /*background-color: transparent;*/
+    background-image: linear-gradient(to right top, #313705, #1c562d, #007369, #008eaf, #12a0eb);
+    color: black;
+    border-radius: 0;
+    border-bottom: 10px solid black;
+    margin-bottom: 20px;
+    padding-top: 20px;
+  }
+  
+  .form-group label {
+    font-size:  25px;
+    font-weight: 500;
+    margin-bottom: 10px;
+    margin-top: 10px;
+    
+  }
+  
+  #submitBtn {
+    margin-top: 10px;
+  }
+  
+  #currentCard {
+    display: none;
+  }
+  .metrics {
+    /*background-color:#fcfff4;*/
+    background: linear-gradient(0deg, rgba(34,193,195,1) 0%, rgba(253,187,45,1) 100%);
+  
+  }
