@@ -14,11 +14,11 @@ function weatherDashboard() {
   let searchHistory = JSON.parse(localStorage.getItem("search")) || [];
 }
 
-var APIKey = "86471b9902e30b02ffb9cf20ee663d22";
+ const APIKey = "86471b9902e30b02ffb9cf20ee663d22";
 var HistoryGlag =1;
 
 function getWeather(cityName) {
-  let queryURL = "https://api.openweathermap.org/data/2.5/weather?q=" + cityName + "&appid=" + APIKey
+  let queryURL = "https://api.openweathermap.org/data/2.5/weather?lat={lat}&lon={lon}&appid={API key}";
   axious.get(queryURL)
     .then(function (response) {
       todayWeather.classList.remove("d-none");
@@ -37,7 +37,7 @@ function getWeather(cityName) {
 
       let lat = response.data.coord.lat;
       let lon = response.data.coord.lon;
-      let UVQueryURL = "https://api.openweathermap.org/data/2.5/uvi/forecast?lat=" + lat + "&lon=" + lon + "&appid=" + APIKey + "&cnt=1";
+      let UVQueryURL = "https://api.openweathermap.org/data/2.5/weather?lat=" + lat + "&lon=" + lon + "&appid=" + APIKey + "&cnt=1";
       axios.get(UVQueryURL)
         .then(function (response) {
           let UVIndex = document.createElement("span");
@@ -59,7 +59,7 @@ function getWeather(cityName) {
         });
 
         let cityID = response.data.id;
-        let forecastQueryURL = "https://api.openweathermap.org/data/2.5/forecast?id=" + cityID + "&appid=" + APIKey;
+        let forecastQueryURL = "https://api.openweathermap.org/data/2.5/weather?lat=" + cityID + "&appid=" + APIKey;
         axios.get(forecastQueryURL)
           .then(function (response) {
             nextFiveDays.classList.remove("d-none");
@@ -107,39 +107,39 @@ function k2f(K) {
   return Math.floor((K - 273.15) * 1.8 + 32);
 }
 
-search.addEventListener("click", function() {
-  const searchTerm = city.value;
-  getWeather(searchTerm);
-  searchHistory.push(searchTerm);
-  localStorage.setItem("search", JSON.stringify(searchHistory));
-  callSearchHistory();
-})
+// search.addEventListener("click", function() {
+//   const searchTerm = city.value;
+//   getWeather(searchTerm);
+//   searchHistory.push(searchTerm);
+//   localStorage.setItem("search", JSON.stringify(searchHistory));
+//   callSearchHistory();
+// })
 
-clearSearch.addEventListener("click", function() {
-  localStorage.clear();
-  searchHistory = [];
-  callSearchHistory();
-})
+// clearSearch.addEventListener("click", function() {
+//   localStorage.clear();
+//   searchHistory = [];
+//   callSearchHistory();
+// })
 
-function callSearchHistory() {
-  history.innerHTML = "";
-  for (let i = 0; i < searchHistory.length; i++) {
-    const historyItem = document.createElement("input");
-    historyItem.setAttribute("type", "text");
-    historyItem.setAttribute("readonly", true);
-    historyItem.setAttribute("class", "input-group mb-3 p-2 cityLabel border-0 rounded d-block text-center");
-    historyItem.setAttribute("value", searchHistory[i]);
-    historyItem.addEventListener("click", function () {
-      getWeather(historyItem.value);
-    })
-    history.append(historyItem);
-  }
-}
+// function callSearchHistory() {
+//   history.innerHTML = "";
+//   for (let i = 0; i < searchHistory.length; i++) {
+//     const historyItem = document.createElement("input");
+//     historyItem.setAttribute("type", "text");
+//     historyItem.setAttribute("readonly", true);
+//     historyItem.setAttribute("class", "input-group mb-3 p-2 cityLabel border-0 rounded d-block text-center");
+//     historyItem.setAttribute("value", searchHistory[i]);
+//     historyItem.addEventListener("click", function () {
+//       getWeather(historyItem.value);
+//     })
+//     history.append(historyItem);
+//   }
+// }
 
-callSearchHistory();
-if (searchHistory.length > 0) {
-  getWeather(searchHistory[searchHistory.length - 1]);
-}
+// callSearchHistory();
+// if (searchHistory.length > 0) {
+//   getWeather(searchHistory[searchHistory.length - 1]);
+// }
 
 
 weatherDashboard();
