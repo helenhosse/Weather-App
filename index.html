@@ -40,11 +40,15 @@
                     <form class="form w-100">
                         <div class="form-group">
                             <label>Input City Name</label>
-                            <input type="text" autocomplete="off" class="form-input w-100" id="city-input">
-                            <button type="button" value="submit" class="btn btn-primary btn-md btn-block w-100" id="submitBtn">Submit!</button>
+                            <input type="text" autocomplete="off" class="form-input w-100" id="enter-city">
+                            <button type="button" value="submit" class="btn btn-primary btn-md btn-block w-100" id="search-button">Submit!</button>
                         </div>
                     </form> <hr>
-                    <div id="history">
+                    <div class="input-group mb-3 border-bottom border-dark">
+                        <button class="btn btn-primary  btnColor mb-3 p-2 w-100" type="button" id="clear-history">Clear
+                            history</button>
+                    </div>
+                    <div id="history"></div>
                     </div>
                 </div>
             </div>
@@ -58,7 +62,9 @@
 
                     </div>
                     <div class="col-md-8">
-                        <div class="card-body text-center">
+                        <div class="card-body text-center"  id="today-weather">
+                            <h3 id="city-name" class="city-name align-middle"></h3>
+                            <img id="current-pic" alt="">
                             <h5 class="card-title text-center" id="today-weather"></h5>
                             <p class="card-text text-center" id="temperature"></p>
                             <p class="card-text text-center" id="wind-speed"></p>

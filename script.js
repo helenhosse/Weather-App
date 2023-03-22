@@ -46,7 +46,7 @@ function weatherDashboard() {
                   .then(function (response) {
                       let UVIndex = document.createElement("span");
 
-                      // When UV Index is good, shows green, when ok shows yellow, when bad shows red
+                      // Will change the color depending on the UV index in the location
                       if (response.data[0].value < 4) {
                           UVIndex.setAttribute("class", "badge badge-success p-2");
                           UVIndex.setAttribute("style", "background-color: #147346;");
@@ -123,7 +123,7 @@ function weatherDashboard() {
       callSearchHistory();
   })
 
-  // Clear History
+  
   clearSearch.addEventListener("click", function () {
       localStorage.clear();
       searchHistory = [];
